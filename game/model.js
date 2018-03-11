@@ -4,11 +4,11 @@ const sequelize = require('../db')
 const Game = sequelize.define('game', {
     rowid: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     colid: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     value: {
       type: Sequelize.INTEGER,
@@ -16,7 +16,7 @@ const Game = sequelize.define('game', {
     },
     locked: {
       type: Sequelize.BOOLEAN,
-      allowNull: false
+      allowNull: true
       }
   },{
   tableName: 'game',
