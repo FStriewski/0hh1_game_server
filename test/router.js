@@ -2,17 +2,30 @@ const Router = require("express").Router;
 const router = new Router();
 const Test = require("./model");
 
+router.post("/game", (req, res) => {
 
-router.get("/test", (req, res) => {
-  const test = Test.findAll()
-    .then(test => {
-      res.json(test);
+  const game = {
+    rowid: req.body.rowid,
+    colid: req.body.rowid,
+    value: req.body.value,
+    locked: req.body.locked
+  };
+
+  console.log(user);
+
+  Users.create(user)
+    .then(entity => {
+      res.status(201);
+      res.send({
+      });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500);
-      res.json({ message: "There was a server error" });
+      console.error(err);
+      res.status(500).send({
+        message: "Something went wrong"
+      });
     });
 });
+
 
 module.exports = router;

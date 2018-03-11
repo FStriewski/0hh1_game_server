@@ -1,10 +1,10 @@
 const Router = require("express").Router;
 const router = new Router();
-const Game = require("./model");
+const Square = require("./model");
 
 
-router.get("/game", (req, res) => {
-  const square = Game.findAll()
+router.get("/square", (req, res) => {
+  const square = Square.findAll()
     .then(square => {
       res.json(square);
     })
@@ -16,8 +16,8 @@ router.get("/game", (req, res) => {
 });
 
 
-router.get("/game/:id", (req, res) => {
-  const square = Game.findById(req.params.id)
+router.get("/square/:id", (req, res) => {
+  const square = Square.findById(req.params.id)
     .then(square => {
       if(square){
         res.json(square);
@@ -32,33 +32,20 @@ router.get("/game/:id", (req, res) => {
     });
 });
 
-//create a new game
-// router.post("/game", (req, res) => {
-//   const square = Game.findById(req.params.id)
-//     .then(square => {
-//
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500);
-//       res.json({ message: "There was a server error" });
-//     });
-// });
 
-
-router.put('/game/:id', (req, res) => {
-  //  const squareId = Number(req.params.id)
+router.put('/square/:id', (req, res) => {
+    const squareId = Number(req.params.id)
     const updates =  req.body
 
 
-  Game.findById(req.params.id)
+  Square.findById(squareId)
     .then(entity => {
-      //if (entity) {
+      if (entity) {
         return entity.update(updates);
-    //  } else {
-    //    res.status(404);
-    //    res.json({ message: "Square not found, can't update." })
-    //  }
+     } else {
+       res.status(404);
+       res.json({ message: "Square not found, can't update." })
+     }
     })
     .then(final => {
       // return update

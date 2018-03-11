@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
 
-const Game = sequelize.define('game', {
+const Square = sequelize.define('square', {
     rowid: {
       type: Sequelize.INTEGER,
       allowNull: true
@@ -19,9 +19,9 @@ const Game = sequelize.define('game', {
       allowNull: true
       }
   },{
-  tableName: 'game',
+  tableName: 'square',
   timestamps: false
 })
 
 
-module.exports = Game
+module.exports = Square
