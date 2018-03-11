@@ -1,5 +1,17 @@
 //create a new game
 const fillBoard = require("../lib/game");
+const bcrypt = require("bcrypt");
+const router = new Router();
+const sign = require("../jwt").sign;
+
+
+const requireUser = (req, res, next) => {
+  if (req.user) next();
+  else
+    res.status(401).send({
+      message: "Please login"
+    });
+};
 
 router.post("/game", (req, res) => {
 
